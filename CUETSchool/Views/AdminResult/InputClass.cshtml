@@ -1,0 +1,71 @@
+﻿
+ @model List<int>
+<style>
+    .custom-btn {
+        color: white !important;
+        background-color: #a5a3a3;
+        
+       
+    }
+
+        .custom-btn:hover {
+            background-color: #8e8e8e; 
+        }
+
+    .custom-btn1 {
+        color: white !important;
+        background-color: #a5a3a3;
+    }
+
+        .custom-btn1:hover {
+            background-color: #8e8e8e; 
+        }
+</style>
+
+<form method="post" asp-action="Index">
+    <div style="display: flex; justify-content: center;">
+        <div style="width: 70%;">
+            <p ><strong><h2>Welcome to your Result Section</h2></strong></p>
+            <div class="row p-6  ">
+                <div class=" col-6">
+                    <label for="classSelect"><strong><h2>Select Class</h2></strong></label>
+                </div>
+                <div class="col-6   text-end ">
+                    <button type="button" class=" btn  mt-2 mb-2 custom-btn"  data-bs-toggle="modal" data-bs-target="#notificationModal">
+                        Notification
+                    </button>
+                </div>
+            </div>
+
+            <select id="classSelect" name="selectedClass" class="form-control mt-6 pt-6">
+                <option value="">Select Class</option>
+                @foreach (var obj in Model)
+                {
+                    <option value="@obj">@obj</option>
+                }
+            </select>
+            <button type="submit" class="btn custom-btn mt-2">Submit</button>
+        </div>
+    </div>
+</form>
+
+<!-- Notification Modal -->
+<div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="notificationModalLabel">Notifications</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @foreach (var notification in ViewBag.Notifications)
+                {
+                    <p>Your @notification.Value student(s)' result(s) are ready for Class @notification.Key.</p>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
