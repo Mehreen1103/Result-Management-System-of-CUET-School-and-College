@@ -1,0 +1,65 @@
+﻿@model Dashboard
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container mt-5">
+        @if (Model.Student == null)
+        {
+            <div class="alert alert-danger">Student data not found. Please log in again.</div>
+        }
+        else
+        {
+            <div class="student-info">
+                <h1>Welcome, @Model.Student.StudentName</h1>
+                <p><strong>ID:</strong> @Model.Student.StudentId</p>
+                <p><strong>Class:</strong> @Model.Student.Class</p>
+            </div>
+
+            <h3>Your Results</h3>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>CQ</th>
+                        <th>MCQ</th>
+                        <th>Practical</th>
+                        <th>Total Marks</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Results == null || !Model.Results.Any())
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center">No results found for this student in the specified class.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var result in Model.Results)
+                        {
+                            <tr>
+                                <td>@result.SubjectName</td>
+                                <td>@result.CQ</td>
+                                <td>@result.MCQ</td>
+                                <td>@result.Practical</td>
+                                <td>@result.TotalMarks</td>
+                                <td>@result.Grade</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+    @* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+    @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
+</body>
+</html>

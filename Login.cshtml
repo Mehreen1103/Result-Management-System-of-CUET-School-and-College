@@ -1,0 +1,98 @@
+﻿@model CUETSchool.Models.StudentLogin
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Login - CUET School and College</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <h1 class="text-success text-center">
+        Welcome to the Result Portal of CUET School and College
+    </h1>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Begin Login Form -->
+                        <form asp-action="Login" method="post" id="loginForm" class="needs-validation">
+                            <div class="form-group">
+                                <label for="userType">User Type</label>
+                                <select class="form-control" id="userType" name="UserType">
+                                    <option value="Student" selected>Student</option>
+                                    <option value="Teacher">Teacher</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
+                            </div>
+                            <!-- Student Login Fields -->
+                            <div id="studentFields">
+                                <div class="form-group">
+                                    <label asp-for="StudentName">Student Name</label>
+                                    <input asp-for="StudentName"
+                                           class="form-control"
+                                           placeholder="Enter your name" />
+                                    <span asp-validation-for="StudentName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Class">Class</label>
+                                    <input asp-for="Class"
+                                           class="form-control"
+                                           placeholder="Enter your class" />
+                                    <span asp-validation-for="Class" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="StudentId">Student ID</label>
+                                    <input asp-for="StudentId"
+                                           class="form-control"
+                                           placeholder="Enter your student ID" />
+                                    <span asp-validation-for="StudentId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <!-- Teacher and Admin Login Fields -->
+                            <div id="emailPasswordFields" class="d-none">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="Email"
+                                           placeholder="Enter your email" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" name="Password"
+                                           placeholder="Enter your password" />
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-danger">
+                                Login
+                            </button>
+                        </form>
+                        <!-- End Login Form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#userType').on('change', function () {
+                const userType = $(this).val();
+                if (userType === 'Student') {
+                    $('#studentFields').removeClass('d-none');
+                    $('#emailPasswordFields').addClass('d-none');
+                } else {
+                    $('#studentFields').addClass('d-none');
+                    $('#emailPasswordFields').removeClass('d-none');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
