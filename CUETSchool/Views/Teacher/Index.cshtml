@@ -1,0 +1,14 @@
+﻿@model IEnumerable<CUETSchool.Models.Teacher>
+
+<h1>Assigned Classes and Subjects</h1>
+
+<div class="teacher-cards-container">
+    @foreach (var teacher in Model)
+    {
+        <div class="teacher-card">
+            <h2>@teacher.Subject</h2>
+            <p>Class: @teacher.Class</p>
+            <a class="view-students-btn" href="@Url.Action("ViewClass", "Teacher", new { subject = teacher.Subject, className = teacher.Class })">View Students</a>
+        </div>
+    }
+</div>
