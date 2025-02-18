@@ -1,5 +1,4 @@
-﻿
- @{
+@{
     ViewData["Title"] = "Student Results Summary";
     var subjects = ViewBag.Subjects as List<string>;
     var studentResults = Model as List<Dictionary<string, object>>;
@@ -15,14 +14,12 @@
             background-color: #8e8e8e;
         }
 
-    .table-color{
+    .table-color {
         background-color: #a5a3a3 !important;
         color: white !important;
-       
-         
     }
 
-         .table-color th {
+        .table-color th {
             background-color: #a5a3a3 !important;
             color: white !important;
         }
@@ -32,16 +29,16 @@
 <div style="display: flex; justify-content: center;">
     <div style="width: 70%;">
         <h2>Student Results Summary</h2>
-        
-    @if (selectedClass > 0)
-    {
-        <div class="row p-6">
-                <div class=" col-6">  <p><strong>Class: </strong>@selectedClass</p></div>
-            <div class="col-6 text-end">
-                    <h2 class="btn custom-btn">Publish</h2>
-            </div>
 
-        </div>
+        @if (selectedClass > 0)
+        {
+            <div class="row p-6">
+                <div class=" col-6">  <p><strong>Class: </strong>@selectedClass</p></div>
+                <div class="col-6 text-end">
+                    <h2 class="btn custom-btn">Publish</h2>
+                </div>
+
+            </div>
 
             <table class="table table-bordered table-color mt-3">
                 <thead class="table-color">
@@ -70,6 +67,6 @@
                     }
                 </tbody>
             </table>
-    }
+        }
     </div>
 </div>
